@@ -23,20 +23,26 @@ def main():
 
     # Allow time for the Microcontroller to reset (common when opening a new serial connection)
     time.sleep(2)
+    try:
+        while True:
+            # Define the message to send
+            message = "Hello, Ali!\r\n"
+            print("Sending message:", message.strip())
 
-    # Define the message to send
-    message = "Hello, Microcontroller!\r\n"
-    print("Sending message:", message.strip())
+            # Send the message to the Arduino
+            ser.write(message.encode('utf-8'))
 
-    # Send the message to the Microcontroller
-    ser.write(message.encode('utf-8'))
+            # Wait a moment to receive the response
+            time.sleep(1)
 
-    # Wait a moment to receive the response
-    time.sleep(1)
+            # Read the response from the Arduino
+            response = ser.readline().decode('utf-8').strip()
+            print("Received response:", response)
 
-    # Read the response from the Microcontroller
-    response = ser.readline().decode('utf-8').strip()
-    print("Received response:", response)
+            # Wait for 5 seconds before sending the next message
+            time.sleep(5)
+    except KeyboardInterrupt:
+        print("Terminating communication loop.")
 
     # Close the serial connection
     ser.close()
