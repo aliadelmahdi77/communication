@@ -18,7 +18,7 @@ import time
 def main():
     # Serial port settings: change '/dev/ttyUSB0' if your device is different (e.g., '/dev/ttyACM0' or '/dev/serial0')
     serial_port = '/dev/ttyUSB0'
-    baud_rate = 115200  # Must match the baud rate set in the Arduino sketch
+    baud_rate = 9600 # Must match the baud rate set in the Arduino sketch
     timeout = 2  # seconds
 
     # Attempt to open the serial connection
