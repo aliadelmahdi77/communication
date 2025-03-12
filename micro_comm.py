@@ -1,24 +1,16 @@
 #!/usr/bin/env python3
 """
-Arduino Communication using PySerial
+Microcontroller Communication using PySerial
 
-This script opens a serial connection to an Arduino, sends a message, and prints the Arduino's response.
 
-Usage:
-1. Connect your Arduino to the Raspberry Pi via USB.
-2. Upload a compatible Arduino sketch (see guide below).
-3. Install PySerial: pip install pyserial
-4. Adjust the serial port and baud rate if needed.
-5. Run this script: python3 arduino_comm.py
-"""
 
 import serial
 import time
 
 def main():
-    # Serial port settings: change '/dev/ttyUSB0' if your device is different (e.g., '/dev/ttyACM0' or '/dev/serial0')
+
     serial_port = '/dev/ttyACM0'
-    baud_rate = 9600 # Must match the baud rate set in the Arduino sketch
+    baud_rate = 9600 # Must match the baud rate set in the Microcontroller sketch
     timeout = 2  # seconds
 
     # Attempt to open the serial connection
@@ -29,20 +21,20 @@ def main():
         print(f"Failed to connect on {serial_port}. Error: {e}")
         return
 
-    # Allow time for the Arduino to reset (common when opening a new serial connection)
+    # Allow time for the Microcontroller to reset (common when opening a new serial connection)
     time.sleep(2)
 
     # Define the message to send
-    message = "Hello, Arduino!\r\n"
+    message = "Hello, Microcontroller!\r\n"
     print("Sending message:", message.strip())
 
-    # Send the message to the Arduino
+    # Send the message to the Microcontroller
     ser.write(message.encode('utf-8'))
 
     # Wait a moment to receive the response
     time.sleep(1)
 
-    # Read the response from the Arduino
+    # Read the response from the Microcontroller
     response = ser.readline().decode('utf-8').strip()
     print("Received response:", response)
 
