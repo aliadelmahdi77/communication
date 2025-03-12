@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Microcontroller Communication using PySerial
-
+"""
 
 
 import serial
